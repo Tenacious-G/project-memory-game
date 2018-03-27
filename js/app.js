@@ -29,6 +29,11 @@ const starList = document.querySelector('.stars');
 	 //clear contents of arrays used to compare cards
 	let exposed=[];
 	let matched=[];	
+
+	let duration;
+	let durationMinutes;
+		let startTime = new Date().getTime();
+		
 //Declare modal before reload() call as part of the reload function hides the modal
 // Get the modal
 var modal = document.getElementById('myModal');
@@ -65,8 +70,8 @@ const playAgainSam = document.querySelector('.playAgain');
 const quitGame = document.querySelector('.quitGame');
 //playButton.addEventListener('click',start,false);
 //modalBody.addEventListener('click',start,false); //this roughly "works"
-playAgainSam.addEventListener('click',reload,false);
-
+// playAgainSam.addEventListener('click',reload,false); //removed for testing
+playAgainSam.addEventListener('click',restart,false);
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
     if (event.target == modal) {
@@ -79,6 +84,11 @@ quitGame.onclick = function() {
     modal.style.display = "none";
 	
 }
+
+
+
+
+
 
 const restartGame = document.querySelector('.restart');
 restartGame.addEventListener('click',restart);
@@ -154,7 +164,7 @@ let startingDeck = ["anchor", "bicycle", "bolt", "bomb", "car", "cube", "diamond
 	matched.splice(0,matched.length); 
 		//test - 
 	console.log("numberOfMatchedPairs is " + numberOfMatchedPairs);
-	
+
 	 //TODO: reset time
 	 
 	//deal out a fresh round of cards
@@ -410,7 +420,11 @@ function start(){
  // *   - shuffle the list of cards using the provided "shuffle" method below
  console.log("Unshuffled startingDeck " + startingDeck);
     startingDeck = shuffle(startingDeck);
-    console.log("shuffled deck - " + startingDeck); //working, startingDeck has been shuffled
+	
+	 // game starting time
+	//let startTime = new Date().getTime();
+	alert("start time is " + startTime);
+  
  // *   - loop through each card and create its HTML
      for(i=0; i<startingDeck.length; i++){
        //commented out for testing only
@@ -613,13 +627,29 @@ card.classList.add('current', 'match');
 	if(numberOfMatchedPairs === 2){ //two for testing purposes only, should be eight
 	console.log("number of matched pairs is " + numberOfMatchedPairs);
 											alert('Game over, well done!\nYou completed the game in ' + count + ' moves.');
-											
+		 // game finishing time
+
+// let finishTime = new Date().getTime();
+// alert("finish time is " + finishTime);
+// duration = Math.floor(((finishTime-startTime) % (1000*60))/1000);
+// durationMinutes = Math.floor(((finishTime-startTime) % (1000*60*60))/(1000*60));
+// alert(duration + ' seconds');	
 											// popup.innerHTML = '<p>Bingo!</p>';
+											//game over, stop the clock
+											stopTimer();
+											alert('Game over, well done!\nYou completed the game in ' + durationMinutes + ' minutes and ' + duration + 'seconds.');
+											//declare variables for modal
+const modalHead = document.querySelector('.modalHeader');
+modalHead.innerHTML = 'Game completed - well done!';
+const modalFoot = document.querySelector('.modalFooter');
+modalFoot.innerHTML = 'You completed the game in ' + durationMinutes + ' minutes and ' + duration + ' seconds.<br></br>You finished the game with ' + numberOfStars + ' stars.';
 //When the user finishes the game, open the modal
 openModal();
 //reset the game after showing the user his/her stats
 numberOfMatchedPairs = 0;
 count = 0;
+durationMinutes = 0;
+duration = 0;
 /* 											// if (window.confirm("Do you really want to leave?")) { 
 											// window.open("exit.html", "Thanks for Visiting!");
 											// }
@@ -634,7 +664,31 @@ count = 0;
 	}
 } //end of function playGame
 
+let intervalID; //needs =0?
+clock();
+const timeTaken = document.querySelector('.timeTaken');
+function clock(){
+	intervalID = setInterval(timer,1000);
+	alert('clock function has been called call in JS');
+}
 
+function timer(){
+		let finishTime = new Date().getTime();
+		//alert("finish time is " + finishTime);
+		duration = Math.floor(((finishTime-startTime) % (1000*60))/1000);
+		durationMinutes = Math.floor(((finishTime-startTime) % (1000*60*60))/(1000*60));
+		//alert(duration + ' seconds');
+		//show time taken so far
+		timeTaken.innerHTML = durationMinutes + 'm ' + duration + ' s';
+
+}
+
+function stopTimer(){
+	let timeMinutes = durationMinutes;
+	let timeSeconds = duration;
+	clearInterval(intervalID);
+	
+}
 
 //<input id="btnConfirm" type="button" value="Confirm" onclick="javascript:showConfirmDlg('Do you want to continue?');" />
 
@@ -682,14 +736,14 @@ let currentCards = deckList.getElementsByClassName('current');
 currentCards.item(0).classList.remove('open', 'show', 'match', 'current');
 currentCards.item(0).classList.remove('open', 'show', 'match', 'current');
 
-                                                                                // let openCards = deckList.getElementsByClassName('card open show'); //note : this includes cards with (card open show match)
+/*                                                                                 // let openCards = deckList.getElementsByClassName('card open show'); //note : this includes cards with (card open show match)
                                                                                 // let matchedCards2 = deckList.getElementsByClassName('card open show match');
                                                                                 // console.log("matched cards2" + matchedCards2);
                                                                                 // // if (matchedCards.item(0).classList.includes('match')){console.log("there is a match");}
                                                                                 // // openCards.item(0).class.remove('open'); //undefined
                                                                                 // openCards.item(0).classList.remove('open', 'show', 'match');
-                                                                                // openCards.item(0).classList.remove('open', 'show', 'match');
-          //           openCards(0).class.remove('show');  //openCards is not a function
+                                                                                // openCards.item(0).classList.remove('open', 'show', 'match'); */
+/*           //           openCards(0).class.remove('show');  //openCards is not a function
           //loop to replace matched cards
           // for (i=0; i<matchedCards2.length; i++){
           //           matchedCards2.item(i).classList.add('open', 'show', 'match');
@@ -701,48 +755,48 @@ currentCards.item(0).classList.remove('open', 'show', 'match', 'current');
                     // while (matches.length > 0) {
                     //   matches.item(0).classList.add('hueframe');
                     //   matches[0].classList.remove('colorbox');
-                    // }
+                    // } */
 
 
-          // console.log(openCards);
+/*           // console.log(openCards);
           // console.log("matched cards2" + matchedCards2);
-          //if cards are part of matching pair, then leave them as they are
+          // if cards are part of matching pair, then leave them as they are
           // if (find.openCards('match')){
-          //   console.log("matching pair, leave them be!");
+            // console.log("matching pair, leave them be!");
           // }
           // else{
-          //   console.log("non-matching pair, begone!")  ;
+            // console.log("non-matching pair, begone!")  ;
           // }
-          //remove the last two cards added to the exposed list
+          // remove the last two cards added to the exposed list
 
-          //otherwise, remove the 'open' and 'show' classes
+          // otherwise, remove the 'open' and 'show' classes
           // openCards.item(0).classList.remove('open');
-  //        openCards.item(0).classList.remove('open');
+         // openCards.item(0).classList.remove('open');
   				  // openCards.classList.remove('open'); //returns "undefined"
-  //these next two lines turn the first two unmatched cards face down
+  // these next two lines turn the first two unmatched cards face down
 // openCards.item(0).classList.remove('open','show');
 // openCards.item(0).classList.remove('open','show');
-            //                            openCards.item(-1).classList.remove('open','show');
+                                       // openCards.item(-1).classList.remove('open','show');
                     // openCards.item(1).classList.remove('open');
                     // openCards.item(1).classList.remove('open');
 
-                      //        openCards[1].classList.remove('open');
-                          //    console.log(openCards);
+                             // openCards[1].classList.remove('open');
+                             // console.log(openCards);
           // for (const openCard of openCards){
-          //
+          
           // }
   // clickedItemClassList.remove('match');
   // let firstCard = exposed[0].classList;
   // firstCard.classList.remove('match');
                                 // let card = evt.target;
-//                                      card.classList.remove('match'); //take "matched" green off all cards
+                                     // card.classList.remove('match'); //take "matched" green off all cards
   // card.classList.remove('show');
 
   // card.classList.remove('open'); //turn all cards face down
-  //TODO:that only works for the second card, need improved logic
+  // TODO:that only works for the second card, need improved logic
 
               // exposed.splice(0,exposed.length); //removed for testing only
-//removed for testing only                            exposed.length = 0;
+// removed for testing only                            exposed.length = 0; */
         }, 599);
 
 }
