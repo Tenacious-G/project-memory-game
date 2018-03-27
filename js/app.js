@@ -44,9 +44,9 @@ const playButton = document.getElementsByClassName('.playAgain');
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal 
-btn.onclick = function() {
-    modal.style.display = "block";
-}
+// btn.onclick = function() {
+    // modal.style.display = "block";
+// }
 //When the user finishes the game, open the modal
 function openModal(){
 	    modal.style.display = "block";
@@ -56,12 +56,13 @@ function openModal(){
 span.onclick = function() {
     modal.style.display = "none";
 }
+
 const modalBody = document.querySelector('.modal-body');
 //let playAgainSam = modalBody.getElementsByClassName('playAgain');
 //When the user clicks on the playAgain button..
 const playAgainSam = document.querySelector('.playAgain');
 //playAgainSam.addEventListener('click',start()); //reload rather than start?
-
+const quitGame = document.querySelector('.quitGame');
 //playButton.addEventListener('click',start,false);
 //modalBody.addEventListener('click',start,false); //this roughly "works"
 playAgainSam.addEventListener('click',reload,false);
@@ -73,10 +74,23 @@ window.onclick = function(event) {
     }
 }
 
+// When the user clicks on the quit game button, close the modal
+quitGame.onclick = function() {
+    modal.style.display = "none";
+	
+}
+
+const restartGame = document.querySelector('.restart');
+restartGame.addEventListener('click',restart);
 // addEventListener.on('click',function clickCard()){
           // // adds a listener for clicks, to run the `myEventListeningFunction` function
           // document.addEventListener('click', myEventListeningFunction);
-		  
+function restart(){
+	//refresh page
+	//history.go(0);
+	window.location.reload();
+
+}	  
 		  
 //adapted from https://social.msdn.microsoft.com/Forums/office/en-US/8a739fd2-2a9d-4720-a59d-854ca4452d0c/javascript-confirm-popup-yes-no-button-instead-of-ok-and-cancel?forum=sharepointdevelopmentprevious
 
@@ -606,7 +620,7 @@ openModal();
 //reset the game after showing the user his/her stats
 numberOfMatchedPairs = 0;
 count = 0;
-											// if (window.confirm("Do you really want to leave?")) { 
+/* 											// if (window.confirm("Do you really want to leave?")) { 
 											// window.open("exit.html", "Thanks for Visiting!");
 											// }
 											// if (window.confirm('Game over, well done!\nYou completed the game in ' + count + ' moves.\n\nDo you want to play again?')) { 
@@ -614,7 +628,7 @@ count = 0;
 											// window.open(start(), "http://www.udacity.com");
 											
 											// let message = "Do you want to continue?";
-											// showConfirmDlg(message);
+											// showConfirmDlg(message); */
 											}
 	evt.stopPropagation(); //stop running the event handler for the card click
 	}
