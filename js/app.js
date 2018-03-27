@@ -4,7 +4,7 @@
 //**TODO
 //set delay so that player can't click on additional cards before the program has displayed the correct output for previous clicks
 //stop player from clicking on same card twice
-reload();
+
  const deckList = document.querySelector('.deck'); // function start()
 
 let parentDeck = document.querySelector('ul.deck');
@@ -18,11 +18,75 @@ const starList = document.querySelector('.stars');
  const stars = document.querySelector('.stars');	
 //create a list of cards that have been turned face up
 //this list should have between zero and two elements
-// let exposed=[];
+	 //reset counters
+	let count= 0; //initialise counter addOneToCount()
+	let cardCount = 0; //this gets reset after every two attempts to match cards
+
+	let matchIndex1 = 0;
+	let matchIndex2 = 0;
+
+	let moves = 0;
+	 //clear contents of arrays used to compare cards
+	let exposed=[];
+	let matched=[];	
+//Declare modal before reload() call as part of the reload function hides the modal
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+const playButton = document.getElementsByClassName('.playAgain');
+
+//user chooses to play again
+//let playAgain = document.querySelector('playAgain');
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+//When the user finishes the game, open the modal
+function openModal(){
+	    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+const modalBody = document.querySelector('.modal-body');
+//let playAgainSam = modalBody.getElementsByClassName('playAgain');
+//When the user clicks on the playAgain button..
+const playAgainSam = document.querySelector('.playAgain');
+//playAgainSam.addEventListener('click',start()); //reload rather than start?
+
+//playButton.addEventListener('click',start,false);
+//modalBody.addEventListener('click',start,false); //this roughly "works"
+playAgainSam.addEventListener('click',reload,false);
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+// addEventListener.on('click',function clickCard()){
+          // // adds a listener for clicks, to run the `myEventListeningFunction` function
+          // document.addEventListener('click', myEventListeningFunction);
+		  
+		  
+//adapted from https://social.msdn.microsoft.com/Forums/office/en-US/8a739fd2-2a9d-4720-a59d-854ca4452d0c/javascript-confirm-popup-yes-no-button-instead-of-ok-and-cancel?forum=sharepointdevelopmentprevious
+
+let startingDeck = ["anchor", "bicycle", "bolt", "bomb", "car", "cube", "diamond", "leaf", "anchor", "bicycle", "bolt", "bomb", "car", "cube", "diamond", "leaf"];
+
+//reload();
 
 //  * Create a list that holds all of your cards
 
- let startingDeck = ["anchor", "bicycle", "bolt", "bomb", "car", "cube", "diamond", "leaf", "anchor", "bicycle", "bolt", "bomb", "car", "cube", "diamond", "leaf"]
+
 //  */
 /*
  * Display the cards on the page
@@ -56,12 +120,16 @@ const starList = document.querySelector('.stars');
    no need for "display table" code here
  // }; */
  function reload(){
+	//close the modal
+	modal.style.display = "none"; 
+	//test - 
+	//console.log("numberOfMatchedPairs is " + numberOfMatchedPairs);
 	 //remove cards from screen
 	 deckList.innerHTML = '';
 	 //reset counters
 	let count= 0; //initialise counter addOneToCount()
 	let cardCount = 0; //this gets reset after every two attempts to match cards
-
+	let numberOfMatchedPairs = 0;
 	let matchIndex1 = 0;
 	let matchIndex2 = 0;
 
@@ -69,7 +137,14 @@ const starList = document.querySelector('.stars');
 	 //clear contents of arrays used to compare cards
 	let exposed=[];
 	let matched=[];	
+	matched.splice(0,matched.length); 
+		//test - 
+	console.log("numberOfMatchedPairs is " + numberOfMatchedPairs);
+	
 	 //TODO: reset time
+	 
+	//deal out a fresh round of cards
+	start();
 	 
  }
  //keep track of how many attempts have been made to pair the cards
@@ -522,10 +597,15 @@ card.classList.add('current', 'match');
 
 
 	if(numberOfMatchedPairs === 2){ //two for testing purposes only, should be eight
+	console.log("number of matched pairs is " + numberOfMatchedPairs);
 											alert('Game over, well done!\nYou completed the game in ' + count + ' moves.');
+											
 											// popup.innerHTML = '<p>Bingo!</p>';
 //When the user finishes the game, open the modal
 openModal();
+//reset the game after showing the user his/her stats
+numberOfMatchedPairs = 0;
+count = 0;
 											// if (window.confirm("Do you really want to leave?")) { 
 											// window.open("exit.html", "Thanks for Visiting!");
 											// }
@@ -540,55 +620,7 @@ openModal();
 	}
 } //end of function playGame
 
-// Get the modal
-var modal = document.getElementById('myModal');
 
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-const playButton = document.getElementsByClassName('.playAgain');
-
-//user chooses to play again
-//let playAgain = document.querySelector('playAgain');
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-    modal.style.display = "block";
-}
-//When the user finishes the game, open the modal
-function openModal(){
-	    modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
-const modalBody = document.querySelector('.modal-body');
-//let playAgainSam = modalBody.getElementsByClassName('playAgain');
-//When the user clicks on the playAgain button..
-const playAgainSam = document.querySelector('.playAgain');
-//playAgainSam.addEventListener('click',start()); //reload rather than start?
-
-//playButton.addEventListener('click',start,false);
-//modalBody.addEventListener('click',start,false); //this roughly "works"
-playAgainSam.addEventListener('click',reload,false);
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-
-// addEventListener.on('click',function clickCard()){
-          // // adds a listener for clicks, to run the `myEventListeningFunction` function
-          // document.addEventListener('click', myEventListeningFunction);
-		  
-		  
-//adapted from https://social.msdn.microsoft.com/Forums/office/en-US/8a739fd2-2a9d-4720-a59d-854ca4452d0c/javascript-confirm-popup-yes-no-button-instead-of-ok-and-cancel?forum=sharepointdevelopmentprevious
 
 //<input id="btnConfirm" type="button" value="Confirm" onclick="javascript:showConfirmDlg('Do you want to continue?');" />
 
