@@ -1,15 +1,21 @@
 // $( document ).ready(function() {
 //   /*
+
+//**TODO
+//set delay so that player can't click on additional cards before the program has displayed the correct output for previous clicks
+//stop player from clicking on same card twice
+reload();
  const deckList = document.querySelector('.deck'); // function start()
-let count= 0; //initialise counter addOneToCount()
+
 let parentDeck = document.querySelector('ul.deck');
 // let listExposed = [];
-let cardCount = 0; //this gets reset after every two attempts to match cards
-let exposed=[];
-let matchIndex1 = 0;
-let matchIndex2 = 0;
-let matched=[];
 
+let numberOfMatchedPairs = 0; //used in function addToMatchedList
+//const starUL = document.querySelector('score-panel');
+//const starList = document.getElementByClassName('stars');
+const starList = document.querySelector('.stars');
+
+ const stars = document.querySelector('.stars');	
 //create a list of cards that have been turned face up
 //this list should have between zero and two elements
 // let exposed=[];
@@ -21,36 +27,132 @@ let matched=[];
 /*
  * Display the cards on the page
 */
- //create a fresh grid when the "Refresh" button is clicked
- //get $ is not defined error message with this line, investigate later
+/*  // create a fresh grid when the "Refresh" button is clicked
+ // get $ is not defined error message with this line, investigate later
              // $(restart.on("submit", function(evt){
-             //   //prevent the default action (the form being submitted) from taking place
-             //    evt.preventDefault();
-             //    // startingDeck();
-             //    // refresh the page
-             //    location.reload();
+               prevent the default action (the form being submitted) from taking place
+                // evt.preventDefault();
+                startingDeck();
+                refresh the page
+                // location.reload();
              // }));
 
  // function startingDeck() {
- //    // //could create a larger grid at a later date
- //    // let inputWidth = $("#input_width").val();
- //    // let inputHeight = $("#input_height").val();
- //    const inputWidth = 4;
- //    const inputHeight = 4;
- //
- //    //clear existing grid
- //   grid.children().remove();
- //
- //   //create table with nested FOR loops
- //   for (let row=0; row < inputHeight; row++)
- //   {grid.append("<li>added row</li>");
- //       for (let col=0; col < inputWidth; col++)
- //       {grid.children().last().append("<li>blobby blobby blobby</li>");}
- //   }
- //   //no need for "display table" code here
- // };
+    //could create a larger grid at a later date
+    let inputWidth = $("#input_width").val();
+    let inputHeight = $("#input_height").val();
+    // const inputWidth = 4;
+    // const inputHeight = 4;
+ 
+    clear existing grid
+   // grid.children().remove();
+ 
+   create table with nested FOR loops
+   // for (let row=0; row < inputHeight; row++)
+   // {grid.append("<li>added row</li>");
+       // for (let col=0; col < inputWidth; col++)
+       // {grid.children().last().append("<li>blobby blobby blobby</li>");}
+   // }
+   no need for "display table" code here
+ // }; */
+ function reload(){
+	 //remove cards from screen
+	 deckList.innerHTML = '';
+	 //reset counters
+	let count= 0; //initialise counter addOneToCount()
+	let cardCount = 0; //this gets reset after every two attempts to match cards
+
+	let matchIndex1 = 0;
+	let matchIndex2 = 0;
+
+	let moves = 0;
+	 //clear contents of arrays used to compare cards
+	let exposed=[];
+	let matched=[];	
+	 //TODO: reset time
+	 
+ }
+ //keep track of how many attempts have been made to pair the cards
+function addOneToCount(){
+  count++;
+  //update the count every time a pair have been clicked
+  let numberOfMoves =  document.querySelector('.moves');
+  numberOfMoves.innerHTML = count;
+  console.log("addOneToCount function - count is " + count);
+ //if player has taken too many moves, remove a star from the rating
+ 
+ switch(count) {
+    case 3:
+		numberOfStars = 2;
+		removeStar(numberOfStars);
+        break;
+    case 5:
+		numberOfStars = 1;
+		removeStar(numberOfStars);
+        break;
+	case 7:
+		numberOfStars = 0;
+		removeStar(numberOfStars);
+        break;
+    default:
+	// {;} //do we need to specify a default here?
+} 
+
+/* // would prefer to use switch:case instead of nested if loops
 
 
+ 	// if (moves<15){
+		// //no action necessary
+	// }
+	// if ((moves > 4) && (moves < 25)){ //testing "4"
+		// //drop the player's performance rating by one star
+		// numberOfStars = 2;
+		// removeStar(numberOfStars);
+	// }
+		// if ((moves > 24) && (moves < 35)){
+		// //drop the player's performance rating by one star
+		// numberOfStars = 1;
+		// removeStar(numberOfStars);
+	// }
+		// if (moves > 34){
+		// //drop the player's performance rating by one star
+		// numberOfStars = 0;
+		// removeStar(numberOfStars);
+	// }
+  */
+  return count;
+}
+
+function removeStar(numberOfStars){
+	//rate the player's performance, the more stars the better
+	//start with three stars every time
+//deckList.insertAdjacentHTML('beforeend', '<li class="card " value = "' + i +
+//TODO add a class in CSS that "blackens" a star
+//uses const starList = ul.getElementsByClassName('stars');
+// or const starListAll = document.querySelectorAll('fa-stars');
+switch (numberOfStars){
+	case 2:
+		stars.innerHTML = '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>';
+	break;
+	case 1:
+		stars.innerHTML = '<li><i class="fa fa-star"></i></li>';
+	break;
+	case 0:
+		stars.innerHTML = '';
+	break;
+	default:
+}
+// if (numberOfStars === 0){
+	// stars.innerHTML = 'NONE';
+// }
+// else if (numberOfStars === 1){
+	// stars.innerHTML = '<li><i class="fa fa-star">SINGLE</i></li>';
+// }
+// else if (numberOfStars === 2){
+	// stars.innerHTML = '<li><i class="fa fa-star">ONE OF TWO</i></li><li><i class="fa fa-star">TWO OF TWO</i></li>';
+// }
+
+}
 //create a function to add the clicked card to the "exposed" list       //add the appropriate card to the exposed list
       function addToExposedList(index){
       exposed.push(startingDeck[index]);
@@ -72,6 +174,9 @@ let matched=[];
 function addToMatchedList(card){
       matched.push(card);
             //        card.classList.add('match');
+	//keep tabs of how many pairs have been matched.
+	numberOfMatchedPairs++;
+	return numberOfMatchedPairs;
 
 }
 
@@ -201,9 +306,7 @@ function shuffle(array) {
     return array;
 
 }
-// addEventListener.on('click',function clickCard()){
-          // // adds a listener for clicks, to run the `myEventListeningFunction` function
-          // document.addEventListener('click', myEventListeningFunction);
+
 
 
 /**
@@ -280,10 +383,7 @@ function start(){
 //   evt.target.classList.add('show');
 // }
 
-function addOneToCount(){
-  count++;
-  return count;
-}
+
 
 
 //run event handler if any cards are clicked
@@ -312,7 +412,7 @@ function playGame(evt)
         // console.log(" is " + evt.target.);
                           // console.log("Before increment, card count is " + cardCount);
         cardCount++;
-        addOneToCount();
+
                           console.log("After increment, cardCount is " + cardCount);
                                                     console.log("After increment, count is " + count);
         let card = evt.target;
@@ -405,6 +505,7 @@ card.classList.add('current', 'match');
                   // clear the exposed list
                  exposed.splice(0,exposed.length); //removed for testing only
                   console.log("matching pair, exposed list cleared, exposed.length is " + exposed.length);
+				          addOneToCount();
                   // exposed = [];
                   //exposed.length = 0;
                   }
@@ -412,41 +513,94 @@ card.classList.add('current', 'match');
                                     else if(exposed.length === 2)
                                     { // not matching, turn both cards face down
                                       //use 'current' class to select the cards we want to turn face down
-                                                                                // firstCard.classList.add('current');
-                                                                                // card.classList.add('current');
-                                                                                // turnFaceDown(firstCard);
-                                          turnFaceDown(card);
-                                            //remove both cards from "exposed"
-                   exposed.splice(0,exposed.length); //removed for testing only
-                  console.log("pair don't match, exposed list cleared, exposed.length is " + exposed.length);
+										turnFaceDown(card);
+										//remove both cards from "exposed"
+										exposed.splice(0,exposed.length); 
+										addOneToCount();
                                     }
 
-        }
-        // else{
-        //   //if the two exposed cards don't match, turn them face down
-        //   //evt.target.classList.remove("show");
-        //   evt.target.className = "card";
 
 
-         //is this the first card to be clicked?
-        // if (exposed.length === 0){
-        //   //yes, first card. Keep the card and index information for comparing with the second
-        //   // exposed.push(clickedCard);
-        //   let firstExposedCard = clickedCard; //this loses the "index" information
-        //   let firstExposedCardIndex = index;
-        // }
-
-        //add the card to the exposed list
-        // addToExposedList(evt.target);
-
-        // clickedItem.classList.add("open");
-        // clickedItem.style.backgroundColor("green");
-      //} //if (evt.target !== evt.currentTarget)
-      evt.stopPropagation(); //stop running the event handler for the card click
-
+	if(numberOfMatchedPairs === 2){ //two for testing purposes only, should be eight
+											alert('Game over, well done!\nYou completed the game in ' + count + ' moves.');
+											// popup.innerHTML = '<p>Bingo!</p>';
+//When the user finishes the game, open the modal
+openModal();
+											// if (window.confirm("Do you really want to leave?")) { 
+											// window.open("exit.html", "Thanks for Visiting!");
+											// }
+											// if (window.confirm('Game over, well done!\nYou completed the game in ' + count + ' moves.\n\nDo you want to play again?')) { 
+											// // window.open(start(), "Thanks for playing!");
+											// window.open(start(), "http://www.udacity.com");
+											
+											// let message = "Do you want to continue?";
+											// showConfirmDlg(message);
+											}
+	evt.stopPropagation(); //stop running the event handler for the card click
+	}
 } //end of function playGame
 
+// Get the modal
+var modal = document.getElementById('myModal');
 
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+const playButton = document.getElementsByClassName('.playAgain');
+
+//user chooses to play again
+//let playAgain = document.querySelector('playAgain');
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+//When the user finishes the game, open the modal
+function openModal(){
+	    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+const modalBody = document.querySelector('.modal-body');
+//let playAgainSam = modalBody.getElementsByClassName('playAgain');
+//When the user clicks on the playAgain button..
+const playAgainSam = document.querySelector('.playAgain');
+//playAgainSam.addEventListener('click',start()); //reload rather than start?
+
+//playButton.addEventListener('click',start,false);
+//modalBody.addEventListener('click',start,false); //this roughly "works"
+playAgainSam.addEventListener('click',reload,false);
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+// addEventListener.on('click',function clickCard()){
+          // // adds a listener for clicks, to run the `myEventListeningFunction` function
+          // document.addEventListener('click', myEventListeningFunction);
+		  
+		  
+//adapted from https://social.msdn.microsoft.com/Forums/office/en-US/8a739fd2-2a9d-4720-a59d-854ca4452d0c/javascript-confirm-popup-yes-no-button-instead-of-ok-and-cancel?forum=sharepointdevelopmentprevious
+
+//<input id="btnConfirm" type="button" value="Confirm" onclick="javascript:showConfirmDlg('Do you want to continue?');" />
+
+// function showConfirmDlg(message)
+// {
+   // var returnValue = window.showModalDialog("dialog.html",message,"dialogHeight:150px;dialogWidth:200px");
+
+   // if ( returnValue == 'yes' )
+	// alert('Yes button is clicked in the dialog');
+   // else
+	// alert('No button is clicked in the dialog');
+// }
 
 function showCard(card){
   console.log("want to show card, passed " + card + " to showCard() function");
@@ -547,8 +701,11 @@ currentCards.item(0).classList.remove('open', 'show', 'match', 'current');
 
 }
 
-
+function exit(){
+	alert('Thanks for playing!');
+}
 start();
+exit();
 //moved this block here to allow the click to work on the new cards but need to add the 'new' cards to the DOM to get over the problem
 //run event handler if any cards are clicked
 // let parentDeck = document.querySelector('ul.deck');
