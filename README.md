@@ -1,10 +1,10 @@
-**MEMORY GAME  **
-**Udacity Front End Nanodegree project  **
+MEMORY GAME
+Udacity Front End Nanodegree project
 
-**version 1.0  **
+version 1.0
 functioning but still needing responsive design 
 
-**ALSO TO DO**  
+ALSO TO DO
 
 styling  
 code formatting in CSS 
