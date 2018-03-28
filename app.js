@@ -245,88 +245,28 @@ function shuffle(array) {
 */
 
 function start(){
- // *   - shuffle the list of cards using the provided "shuffle" method below
- console.log("Unshuffled startingDeck " + startingDeck);
-    startingDeck = shuffle(startingDeck);
-	
-	 // game starting time
-	//let startTime = new Date().getTime();
-	alert("start time is " + startTime);
+	//shuffle the list of cards
+	startingDeck = shuffle(startingDeck);
   
- // *   - loop through each card and create its HTML
+	//loop through each card and create its HTML
      for(i=0; i<startingDeck.length; i++){
-       //commented out for testing only
-       console.log(startingDeck[i]);//ok
 
        //give each <li> element a value ( such as 0,1,2,...) that ties in with the index of the startingDeck.
        //this will allow us to find the appropriate card name/icon when the cards are clicked at random later
 
-       //create an element
-          // const freshCard = document.createElement('li');
-       //then use "appendChild" to add it to the DOM
-          // deckList.appendChild(freshCard);
-          // let newList =
-          //also add textContent, hopefully will help later
-          //adding a title may be even better  -
-       deckList.insertAdjacentHTML('beforeend', '<li class="card " value = "' + i + '"" title="'+ startingDeck[i] + '""'+'>'+ startingDeck[i] + '<i class="fa fa-'+ startingDeck[i] + '""</i></li>');
-
-       // deckList.insertAdjacentHTML('beforeend', '<li class="card " value = "' + i + ' "><i class="fa fa-'+ startingDeck[i] + '""</i></li>'); //working
-
-       // deckList.appendChild();
-       // deckList.append('<li class="card"><i class="fa fa-"'+ startingDeck[i] + '</i></li>');
-       //would like to overwrite the existing text in the deck <ul> as the click function only seems to work on the original cards
-
-   	//$deck.append($('<li class="card"><i class="fa fa-' + cards[i] + '"></i></li>'))
+       deckList.insertAdjacentHTML('beforeend', '<li class="card " value = "' + i +'""><i class="fa fa-'+ startingDeck[i] + '""</i></li>');
     }
  }
-/*
- *   - add each card's HTML to the page
- */
-
-
-/*
-
-// @description Shuffle function from http://stackoverflow.com/a/2450976
-// Used like so
-    //var arr = [2, 11, 37, 42];
-    //arr = shuffle(arr);
-    //console.log(arr);
-@constructor
-@parameters   array - the pack of cards to be shuffled (startingDeck)
-              currentIndex - the index of the current card
-              temporaryValue - a holding value for swapping
-              randomIndex - a random index to swap with the current index
-*/
-
-
-// add click event listener to a card
-// const clickedCard = document.querySelector('button.testButton'); // test works on testButton
-
-// const clickedCard = document.querySelector('li.card'); // test works on first card only- sends message to console
-// const clickedCard = document.querySelectorAll('.card');
-
-// clickedCard.addEventListener('click', cardClicked);
-
-// function displaySymbol(evt.target) {
-//   //turn the card face up
-//   evt.target.classList.add('open');
-//   //show the open card's icon
-//   evt.target.classList.add('show');
-// }
-
-
-
 
 //run event handler if any cards are clicked
-// let parentDeck = document.querySelector('ul.deck');
-parentDeck.addEventListener('click', playGame, false);//why have "false" here?
+parentDeck.addEventListener('click', playGame, false);
 
 
- //*  - display the card's symbol (put this functionality in another function that you call from this one)
+ //display the card's symbol
 function playGame(evt)
 {
       if (evt.target !== evt.currentTarget)  //check that the parent itself hasn't been clicked
-      {    // The target of the event is represented by evt.target, and the target element the event listener is attached to is represented by e.currentTarget. By simply checking that these values not be equal, you can ensure that the event handler doesn't react to events fired from the parent element that you don't care about.
+      {    // The target of the event is represented by evt.target, and the target element the event listener is attached to is represented by evt.currentTarget. By simply checking that these values not be equal, you can ensure that the event handler doesn't react to events fired from the parent element that you don't care about.
 	  //stop double-clicking causing problems
 	  evt.preventDefault();
         // let clickedItem = evt.target.id;
@@ -370,7 +310,7 @@ function playGame(evt)
 card.classList.add('current', 'match');
 
 
-        // - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
+        // - add the card to a *list* of "open" cards 
         // add the appropriate card to the exposed list
         addToExposedList(index);
         // exposed.push(startingDeck[index]);
@@ -416,7 +356,7 @@ card.classList.add('current', 'match');
                   //  console.log("exposed.length is " + exposed.length);//test only
                   //check if the clicked card matches an already exposed card
                   // if (exposed.includes(clickedCard)){
-                  // *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
+                  // *    + if the cards do match, lock the cards in the open position 
                   // let index = evt.target.value;
                   // let clickedCard = startingDeck[index];
                   console.log("A " + evt.target.title + ", heck yeah, we've seen this before"); //evt.target.title was clickedItemTitle
@@ -442,7 +382,7 @@ card.classList.add('current', 'match');
                   // exposed = [];
                   //exposed.length = 0;
                   }
-   // + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
+   // + if the cards do not match, remove the cards from the list and hide the card's symbol 
                                     else if(exposed.length === 2)
                                     { // not matching, turn both cards face down
                                       //use 'current' class to select the cards we want to turn face down
@@ -642,12 +582,12 @@ exit();
 // parentDeck.addEventListener('click', playGame, false);//why have "false" here?
 /*
  * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
+ *  - display the card's symbol 
+ *  - add the card to a *list* of "open" cards 
  *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
+ *    + if the cards do match, lock the cards in the open position 
+ *    + if the cards do not match, remove the cards from the list and hide the card's symbol 
+ *    + increment the move counter and display it on the page 
+ *    + if all cards have matched, display a message with the final score 
  */
 // } //end of document.ready
