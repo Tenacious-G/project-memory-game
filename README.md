@@ -1,11 +1,12 @@
 **MEMORY GAME  **
 **Udacity Front End Nanodegree project  **
 
-**version 0.3  **
-functional but still needing responsive design  
-  
-**TO DO**  
-remove "work in progress" comments and "checkpoint" messages  
+**version 1.0  **
+functioning but still needing responsive design 
+
+**ALSO TO DO**  
+
 styling  
-code formatting  
+code formatting in CSS 
 responsive design (possibly using Bootstrap?) 
+
