@@ -1,0 +1,132 @@
+/*********************************************************BREAKPOINT (mobile phone) ********************************************/
+/*******************************************************************************************************************************/
+
+@media screen and (max-width:485px){
+	.container{
+		display: flex;
+		flex-wrap: wrap;
+	}
+	
+/************ HEADER *************************/
+.header{
+	order:1;
+}
+/************ SCORE-PANEL *************************/
+
+/* .stars .time-taken .restart{ */
+	/* display: block; */
+	/* width: 50%; */
+/* } */
+
+.fa.fa-star{
+	/* font: 4em; */
+	font: center;
+	line-height: 60px;
+	height: 60px;
+	width: 60px;
+}
+
+.moves{
+	display: block;
+	order: 2;
+	width: 95%;
+}
+
+.restart{
+	display: block;
+	order: 4;
+	width: 95%;
+}
+
+.stars{
+	display: block;
+	height: 60px;
+	/* margin: 0 5% 5% 0; */
+	margin-left: auto;
+	margin-right: auto;
+	order: 1;
+	width: 95%;
+}
+
+.time-taken{
+	display: block;
+	order: 3;
+	width: 95%;
+}
+
+	.score-panel{
+		order: 3;
+		width: 100%;
+				display: flex;
+		flex-wrap: wrap;
+	}
+	
+	
+/************ MODAL *************************/
+
+	.modal-content{
+	width: 80%;
+	}
+/************ DECK *************************/
+
+
+
+	/* modify original large screen settings */
+	.deck {
+
+		/* background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%); */
+		/* min-height: 680px; */
+		border-radius: 3px;
+		box-shadow: 4px 3px 7px 0 rgba(46, 61, 73, 0.5);
+		margin: 0 0 1em;
+		order: 1;
+		padding: 10px;
+		width: 95%;
+		/* display: flex; */
+		/* flex-wrap: wrap; */
+		/* justify-content: space-between; */
+		/* align-items: center; */
+}
+
+	.deck .card {
+		height: 60px;
+		width: 23%;
+		/* background: #2e3d49; */
+		font-size: 0;
+		/* color: #ffffff; */
+		border-radius: 3px;
+		/* cursor: pointer; */
+		/* display: flex; */
+		/* justify-content: center; */
+		/* align-items: center; */
+		box-shadow: 2px 1px 7px 0 rgba(46, 61, 73, 0.5);
+		margin: 2px 2px;
+	}
+
+} 
+
+/*********************************************************BREAKPOINT ( tablet) ********************************************/
+/*******************************************************************************************************************************/
+/* first breakpoint at about 500px (mobile phone -> tablet) */
+
+@media screen and (min-width:486px) and (max-width:702px){
+/************ HEADER *************************/
+/************ SCORE-PANEL *************************/
+/************ MODAL *************************/
+/************ DECK *************************/	
+}
+
+/*********************************************************BREAKPOINT ( laptop) ********************************************/
+/*******************************************************************************************************************************/
+@media screen and (min-width: 702px){
+	.container{
+		margin: 2% auto;
+		width: 96%;
+	}
+	
+/************ HEADER *************************/
+/************ SCORE-PANEL *************************/
+/************ MODAL *************************/
+/************ DECK *************************/
+
+}

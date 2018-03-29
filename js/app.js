@@ -114,7 +114,29 @@ function addOneToCount(){
 	count++;
 	//update the count every time a pair have been clicked
 	let numberOfMoves =  document.querySelector('.moves');
-	numberOfMoves.innerHTML = count;
+	//adjust display depending on number of moves ( 0 moves, 1 move, 2 moves, ...)
+	switch(numberOfMoves){
+		case 1:
+		numberOfMoves.innerHTML = count + ' move';
+		break;
+		default:
+		numberOfMoves.innerHTML = count + ' moves';
+	
+	}
+	console.log("addOneToCount function - count is " + count);
+	
+	// if (count = 0){
+		// {numberOfMoves.innerHTML = count + ' moves';}
+	
+		// if (count = 1){
+		// numberOfMoves.innerHTML = count + ' move';
+		// }
+			// else {
+			// numberOfMoves.innerHTML = count + ' moves';
+			// }
+	// }
+	// numberOfMoves.innerHTML = count + ' moves';
+	
 	console.log("addOneToCount function - count is " + count);
   
 	 //if player has taken too many moves, remove a star from the rating
@@ -127,10 +149,10 @@ function addOneToCount(){
 			numberOfStars = 1;
 			removeStar(numberOfStars);
 			break;
-		case 7:
-			numberOfStars = 0;
-			removeStar(numberOfStars);
-			break;
+		// case 7:
+			// numberOfStars = 0;
+			// removeStar(numberOfStars);
+			// break;
 		default:
 	} 
 	return count;
@@ -147,9 +169,9 @@ function removeStar(numberOfStars){
 		case 1:
 			stars.innerHTML = '<li><i class="fa fa-star"></i></li>';
 		break;
-		case 0:
-			stars.innerHTML = '';
-		break;
+		// case 0:
+			// stars.innerHTML = '';
+		// break;
 		default:
 	}
 
