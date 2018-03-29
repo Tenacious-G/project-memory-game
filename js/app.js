@@ -33,11 +33,11 @@ const starList = document.querySelector('.stars');
 		
 //Declare modal before reload() call as part of the reload function hides the modal
 // Get the modal
-var modal = document.getElementById('myModal');
+var modal = document.getElementById('modal-standard');
 
 // Get the button that opens the modal
 var btn = document.getElementById("myBtn");
-const playButton = document.getElementsByClassName('.playAgain');
+const playButton = document.getElementsByClassName('.play-again');
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
@@ -53,10 +53,10 @@ span.onclick = function() {
 }
 
 const modalBody = document.querySelector('.modal-body');
-//When the user clicks on the playAgain button..
-const playAgainSam = document.querySelector('.playAgain');
+//When the user clicks on the play-again button..
+const playAgainSam = document.querySelector('.play-again');
 playAgainSam.addEventListener('click',restart,false);
-const quitGame = document.querySelector('.quitGame');
+const quitGame = document.querySelector('.quit-game');
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
@@ -319,9 +319,9 @@ function playGame(evt){
 				//game over, stop the clock
 				stopTimer();
 				//declare variables for modal
-				const modalHead = document.querySelector('.modalHeader');
+				const modalHead = document.querySelector('.salutation');
 				modalHead.innerHTML = 'Game completed - well done!';
-				const modalFoot = document.querySelector('.modalFooter');
+				const modalFoot = document.querySelector('.statistics');
 				modalFoot.innerHTML = 'You completed the game in ' + durationMinutes + ' minutes and ' + duration + ' seconds.<br></br>You finished the game with ' + numberOfStars + ' stars.';
 				//When the user finishes the game, open the modal
 				openModal();
@@ -337,7 +337,7 @@ function playGame(evt){
 
 let intervalID; //no need for "=0"
 clock();
-const timeTaken = document.querySelector('.timeTaken');
+const timeTaken = document.querySelector('.time-taken');
 function clock(){
 	intervalID = setInterval(timer,1000);
 }
