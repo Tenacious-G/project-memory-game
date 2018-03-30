@@ -8,8 +8,15 @@
 	}
 	
 /************ HEADER *************************/
+h1{
+		font: 0.2em;
+		line-height: 10px;
+}
+
 .header{
+
 	order:1;
+	
 }
 /************ SCORE-PANEL *************************/
 
@@ -18,47 +25,51 @@
 	/* width: 50%; */
 /* } */
 
-.fa.fa-star{
+.score-panel .fa.fa-star{
 	/* font: 4em; */
 	font: center;
 	line-height: 60px;
-	height: 60px;
-	width: 60px;
+	height: 50px;
+	width: 50px;
 }
 
-.moves{
+.score-panel .moves{
 	display: block;
 	order: 2;
-	width: 95%;
+	width: 35%;
 }
 
-.restart{
+.score-panel .restart{
 	display: block;
+	float: left;
+	line-height: 24px;
 	order: 4;
-	width: 95%;
+	width: 65%;
 }
 
-.stars{
-	display: block;
+.score-panel .stars{
+	display: inline;
 	height: 60px;
 	/* margin: 0 5% 5% 0; */
 	margin-left: auto;
 	margin-right: auto;
 	order: 1;
-	width: 95%;
+	width: 35%;
 }
 
-.time-taken{
+.score-panel .time-taken{
 	display: block;
 	order: 3;
-	width: 95%;
+	width: 35%;
 }
 
 	.score-panel{
+		margin-left: auto;
+		margin-right: auto;
 		order: 3;
-		width: 100%;
-				display: flex;
-		flex-wrap: wrap;
+		width: 90%;
+		/* display: flex; */
+		/* flex-wrap: wrap; */
 	}
 	
 	
