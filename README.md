@@ -1,7 +1,7 @@
-**MEMORY GAME  **
-**Udacity Front End Nanodegree project  **
+**MEMORY GAME**
+**Udacity Front End Nanodegree project**
 
-**version 2.0  **
+**version 2.0**
 
 **How to set up the game**
 
