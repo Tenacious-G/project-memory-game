@@ -244,15 +244,128 @@ h1 {
 
 /*********************************************************BREAKPOINT ( laptop) ********************************************/
 /*******************************************************************************************************************************/
-@media screen and (min-width: 702px){
+@media screen and (min-width: 703px){
 	.container{
 		margin: 2% auto;
-		width: 96%;
+		width: 80%;
 	}
 	
 /************ HEADER *************************/
+
+	.header-and-score-panel{
+	width: 80%;
+}
+
+h1 {
+    font-family: 'Open Sans', sans-serif;
+	font-size: 1.5em;
+    font-weight: 600;
+	text-align: center;
+}
+
+header{
+	order: 1;
+}
 /************ SCORE-PANEL *************************/
+
+.score-panel {
+	order: 3;
+    text-align: left;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.score-panel .stars {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    margin: 0 5px 0 0;
+	width: 30%;
+}
+
+.score-panel .stars li {
+    list-style: none;
+    display: inline-block;
+	width: 30%;
+}
+
+.score-panel .restart {
+    float: right;
+    cursor: pointer;
+	width: 10%;
+}
+
+.fa-star{
+	background-color: #02ccba;
+	color : #aa7ecd;
+	/* display: inline-block; */
+	font-size: 3em;
+}
+
+.moves{
+	font-size: 2.5em;
+	text-align: center;
+	width: 100%;
+}
+
+.time-taken{
+	font-size: 2.5em;
+	margin-left: 5%;
+	width: 100%;
+}
+
+.header-and-score-panel {
+	width: 90%;
+}
 /************ MODAL *************************/
 /************ DECK *************************/
+
+.deck {
+
+    /* min-height: 680px; */
+    align-items: center;
+    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    border-radius: 10px;
+    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 0 3em;
+	/* max-height: 20%; */
+	order: 2;
+    padding: 32px;
+    width: 60%;
+}
+
+.deck .card {
+    align-items: center;
+    background: #2e3d49;
+    border-radius: 8px;
+    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    font-size: 0;
+    height: 100px;
+    justify-content: center;
+	margin-bottom: 10px;
+    width: 23%;
+}
+
+.deck .card.open {
+    transform: rotateY(0);
+    background: #02b3e4;
+    cursor: default;
+}
+
+.deck .card.show {
+    font-size: 33px;
+}
+
+.deck .card.match {
+    cursor: default;
+    background: #02ccba;
+    font-size: 33px;
+}
 
 }
