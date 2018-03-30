@@ -2,85 +2,76 @@
 /*******************************************************************************************************************************/
 
 @media screen and (max-width:485px){
-	.container{
+	.container {
 		display: flex;
 		flex-wrap: wrap;
 	}
 	
-	.header-and-score-panel{
-	order: 2;
-	width: 100%;
-}
+	.header-and-score-panel {
+		order: 2;
+		width: 100%;
+	}
 	
 /************ HEADER *************************/
-h1{
+	h1 {
 		font: 0.2em;
 		line-height: 10px;
-}
+	}
 
-header{
-	margin-left: 5%;
-	/* margin-right: auto; */
-	/* order:1; */
-	
-}
+	header {
+		margin-left: 5%;
+	}
 /************ SCORE-PANEL *************************/
 
-.score-panel{
+	.score-panel {
 		margin-left: auto;
 		margin-right: auto;
 		order: 3;
 		width: 90%;
 	}
 
-.score-panel .fa.fa-star{
-	font: center;
-	line-height: 60px;
-	height: 50px;
-	width: 50px;
-}
+	.score-panel .fa.fa-star {
+		font: center;
+		line-height: 60px;
+		height: 50px;
+		width: 50px;
+	}
 
-.score-panel .moves{
-	display: block;
-	order: 2;
-	width: 35%;
-}
+	.score-panel .moves {
+		display: block;
+		order: 2;
+		width: 35%;
+	}
 
-.score-panel .restart{
-	display: block;
-	float: left;
-	line-height: 24px;
-	order: 4;
-	width: 65%;
-}
+	.score-panel .restart {
+		display: block;
+		float: left;
+		line-height: 24px;
+		order: 4;
+		width: 65%;
+	}
 
-.score-panel .stars{
-	display: inline;
-	height: 60px;
-	/* margin: 0 5% 5% 0; */
-	margin-left: auto;
-	margin-right: auto;
-	order: 1;
-	width: 35%;
-}
+	.score-panel .stars {
+		display: inline;
+		height: 60px;
+		margin-left: auto;
+		margin-right: auto;
+		order: 1;
+		width: 35%;
+	}
 
-.score-panel .time-taken{
-	display: block;
-	order: 3;
-	width: 35%;
-}
+	.score-panel .time-taken {
+		display: block;
+		order: 3;
+		width: 35%;
+	}
 
-
-	
-	
 /************ MODAL *************************/
 
 	.modal-content{
-	width: 80%;
+		width: 80%;
 	}
 /************ DECK *************************/
-
-	/* modify original large screen settings */
 	.deck {
 		border-radius: 3px;
 		box-shadow: 4px 3px 7px 0 rgba(46, 61, 73, 0.5);
@@ -88,15 +79,15 @@ header{
 		order: 1;
 		padding: 10px;
 		width: 95%;
-}
+	}
 
 	.deck .card {
-		height: 60px;
-		width: 23%;
-		font-size: 0;
 		border-radius: 3px;
 		box-shadow: 2px 1px 7px 0 rgba(46, 61, 73, 0.5);
+		font-size: 0;
+		height: 60px;
 		margin: 2px 2px;
+		width: 23%;
 	}
 
 } 
@@ -108,264 +99,234 @@ header{
 @media screen and (min-width:486px) and (max-width:702px){
 /************ CONTAINER *************************/	
 
-.container {
-    display: flex;
-    justify-content: auto;
-    align-items: none;
-    flex-direction: row;
-}
+	.container {
+		display: flex;
+		justify-content: auto;
+		align-items: none;
+		flex-direction: row;
+	}
 
 /************ MEDIUM SCREEN *************************/
 
-.header-and-score-panel{
-	order: 2;
-	width: 50%;
-}
+	.header-and-score-panel{
+		order: 2;
+		width: 50%;
+	}
 
 /************ HEADER *************************/
 
-header {
-	display: flex;
-    flex-wrap: wrap;
-	order: 2;
-	width: 100%;
-}
-h1 {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
-	margin-left: 10px;
-	/* order: 2; */
-}
+	header {
+		display: flex;
+		flex-wrap: wrap;
+		order: 2;
+		width: 100%;
+	}
+	
+	h1 {
+		font-family: 'Open Sans', sans-serif;
+		font-weight: 300;
+		margin-left: 10px;
+	}
+
 /************ SCORE-PANEL *************************/
 
-.score-panel {
-	display: flex;
-    flex-wrap: wrap;
-	margin-left: 10px;
-	order: 3;
-    /* text-align: right; */
-    width: 100%;
-    margin-bottom: 10px;
-}
+	.score-panel {
+		display: flex;
+		flex-wrap: wrap;
+		margin-left: 10px;
+		order: 3;
+		width: 100%;
+		margin-bottom: 10px;
+	}
 
-.score-panel .stars {
-    margin: 0;
-    padding: 0;
-    display: inline-block;
-    margin: 0 5px 0 0;
-	width: 100%;
-}
+	.score-panel .stars {
+		display: inline-block;
+		margin: 0 5px 0 0;
+		margin: 0;
+		padding: 0;
+		width: 100%;
+	}
 
-.score-panel .stars li {
-    list-style: none;
-    display: inline-block;
-}
+	.score-panel .stars li {
+		display: inline-block;
+		list-style: none;
+	}
 
-.score-panel button{
-
-    cursor: pointer;
-	    /* float: right; */
+	.score-panel button {
+		cursor: pointer;
 		margin-left: 0;
-	/* position: absolute; */
-	/* right: 20px; */
-	width: 65%;
-}
+		width: 65%;
+	}
 
-.fa-star{
-	background-color: #02ccba;
-	color : #aa7ecd;
-	/* display: inline-block; */
-	/* font-size: 3em; */
-}
-
-/* .moves{ */
-	/* font-size: 1.5em; */
-	/* width: 100%; */
-/* } */
-
-/* .time-taken{ */
-	/* font-size: 1.5em; */
-	/* width: 100%; */
-/* } */
-
-
+	.fa-star {
+		background-color: #02ccba;
+		color : #aa7ecd;
+	}
 
 /************ MODAL *************************/
 /************ DECK *************************/
 
-.deck {
+	.deck {
+		background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+		border-radius: 10px;
+		box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		max-height: 20%;
+		order: 1;
+		width: 100%;
+	}
 
-    /* min-height: 680px; */
-    /* align-items: center; */
-    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
-    border-radius: 10px;
-    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    /* margin: 0 0 3em; */
-	max-height: 20%;
-	order: 1;
-    /* padding: 32px; */
-    width: 100%;
-}
+	.deck .card {
+		background: #2e3d49;
+		border-radius: 8px;
+		box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+		color: #ffffff;
+		cursor: pointer;
+		display: flex;
+		font-size: 0;
+		height: 75px;
+		margin: 0 0 10px;
+		width: 23%;
+	}
 
-.deck .card {
-    /* align-items: center; */
-    /* justify-content: center; */
-    background: #2e3d49;
-    border-radius: 8px;
-    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
-    color: #ffffff;
-    cursor: pointer;
-    display: flex;
-    font-size: 0;
-    height: 75px;
-	margin: 0 0 10px;
-    width: 23%;
-}
+	.deck .card.open {
+		background: #02b3e4;
+		cursor: default;
+		transform: rotateY(0);
+	}
 
-.deck .card.open {
-    transform: rotateY(0);
-    background: #02b3e4;
-    cursor: default;
-}
+	.deck .card.show {
+		font-size: 33px;
+	}
 
-.deck .card.show {
-    font-size: 33px;
-}
-
-.deck .card.match {
-    cursor: default;
-    background: #02ccba;
-    font-size: 33px;
-}	
+	.deck .card.match {
+		background: #02ccba;
+		cursor: default;
+		font-size: 33px;
+	}	
 }
 
 /*********************************************************BREAKPOINT ( laptop) ********************************************/
 /*******************************************************************************************************************************/
 @media screen and (min-width: 703px){
-	.container{
+	.container {
 		margin: 2% auto;
 		width: 80%;
 	}
 	
 /************ HEADER *************************/
 
-	.header-and-score-panel{
-	width: 80%;
-}
+	.header-and-score-panel {
+		width: 80%;
+	}
 
-h1 {
-    font-family: 'Open Sans', sans-serif;
-	font-size: 1.5em;
-    font-weight: 600;
-	text-align: center;
-}
+	h1 {
+		font-family: 'Open Sans', sans-serif;
+		font-size: 1.5em;
+		font-weight: 600;
+		text-align: center;
+	}
 
-header{
-	order: 1;
-}
+	header{
+		order: 1;
+	}
 /************ SCORE-PANEL *************************/
 
-.score-panel {
-	order: 3;
-    text-align: left;
-    width: 100%;
-    margin-bottom: 10px;
-}
+	.score-panel {
+		order: 3;
+		margin-bottom: 10px;
+		text-align: left;
+		width: 100%;
+	}
 
-.score-panel .stars {
-    margin: 0;
-    padding: 0;
-    display: inline-block;
-    margin: 0 5px 0 0;
-	width: 30%;
-}
+	.score-panel .stars {
+		width: 30%;
+		display: inline-block;
+		margin: 0 5px 0 0;
+		margin: 0;
+		padding: 0;
+	}
 
-.score-panel .stars li {
-    list-style: none;
-    display: inline-block;
-	width: 30%;
-}
+	.score-panel .stars li {
+		width: 30%;
+		display: inline-block;
+		list-style: none;
+	}
 
-.score-panel .restart {
-    float: right;
-    cursor: pointer;
-	width: 10%;
-}
+	.score-panel .restart {
+		width: 10%;
+		cursor: pointer;
+		float: right;
+	}
 
-.fa-star{
-	background-color: #02ccba;
-	color : #aa7ecd;
-	/* display: inline-block; */
-	font-size: 3em;
-}
+	.fa-star{
+		background-color: #02ccba;
+		color : #aa7ecd;
+		font-size: 3em;
+	}
 
-.moves{
-	font-size: 2.5em;
-	text-align: center;
-	width: 100%;
-}
+	.moves{
+		font-size: 2.5em;
+		text-align: center;
+		width: 100%;
+	}
 
-.time-taken{
-	font-size: 2.5em;
-	margin-left: 5%;
-	width: 100%;
-}
+	.time-taken{
+		font-size: 2.5em;
+		margin-left: 5%;
+		width: 100%;
+	}
 
-.header-and-score-panel {
-	width: 90%;
-}
+	.header-and-score-panel {
+		width: 90%;
+	}
 /************ MODAL *************************/
 /************ DECK *************************/
 
-.deck {
+	.deck {
+		align-items: center;
+		background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+		border-radius: 10px;
+		box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		margin: 0 0 3em;
+		order: 2;
+		padding: 32px;
+		width: 60%;
+	}
 
-    /* min-height: 680px; */
-    align-items: center;
-    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
-    border-radius: 10px;
-    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin: 0 0 3em;
-	/* max-height: 20%; */
-	order: 2;
-    padding: 32px;
-    width: 60%;
-}
+	.deck .card {
+		align-items: center;
+		background: #2e3d49;
+		border-radius: 8px;
+		box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+		color: #ffffff;
+		cursor: pointer;
+		display: flex;
+		font-size: 0;
+		height: 100px;
+		justify-content: center;
+		margin-bottom: 10px;
+		width: 23%;
+	}
 
-.deck .card {
-    align-items: center;
-    background: #2e3d49;
-    border-radius: 8px;
-    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
-    color: #ffffff;
-    cursor: pointer;
-    display: flex;
-    font-size: 0;
-    height: 100px;
-    justify-content: center;
-	margin-bottom: 10px;
-    width: 23%;
-}
+	.deck .card.open {
+		background: #02b3e4;
+		cursor: default;
+		transform: rotateY(0);
+	}
 
-.deck .card.open {
-    transform: rotateY(0);
-    background: #02b3e4;
-    cursor: default;
-}
+	.deck .card.show {
+		font-size: 33px;
+	}
 
-.deck .card.show {
-    font-size: 33px;
-}
-
-.deck .card.match {
-    cursor: default;
-    background: #02ccba;
-    font-size: 33px;
-}
-
+	.deck .card.match {
+		background: #02ccba;
+		cursor: default;
+		font-size: 33px;
+	}
 }
