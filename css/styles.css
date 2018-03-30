@@ -1,0 +1,194 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+body {
+	background-color: #d5f8fb;
+    font-family: 'Coda', cursive;
+}
+
+.container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+h1 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+}
+
+/*
+ * Styles for the deck of cards
+ */
+
+.deck {
+	align-items: center;
+	background: linear-gradient(260deg, #6deef7 0%, #e4f76d 100%);
+	border-radius: 10px;
+	box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin: 0 0 3em;
+	max-height: 20%;
+	padding: 32px;
+	width: 660px;
+}
+
+.deck .card {
+	align-items: center;
+	background: #6deef7;
+	border-radius: 8px;
+	box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+	color: #f1f2f3;
+	cursor: pointer;
+	display: flex;
+	font-size: 0;
+	height: 125px;
+	justify-content: center;
+	width: 125px;
+}
+
+.deck .card.open {
+    background: #17ec4c;
+    cursor: default;
+    transform: rotateY(0);
+}
+
+.deck .card.show {
+    font-size: 33px;
+}
+
+.deck .card.match {
+    background: #17ec4c;	
+    cursor: default;
+    font-size: 33px;
+}
+
+/*
+ * Styles for the Score Panel
+ */
+
+.score-panel {
+    margin-bottom: 10px;
+    text-align: left;
+    width: 345px;
+}
+
+.score-panel .stars {
+    display: inline-block;
+    margin: 0 5px 0 0;
+    margin: 0;
+    padding: 0;
+}
+
+.score-panel .stars li {
+    display: inline-block;
+    list-style: none;
+}
+
+.score-panel .restart {
+    cursor: pointer;
+    float: right;
+}
+
+.fa-star{
+	background-color: #6deef7;
+	color : #e4f76d;
+	font-size: 3em;
+}
+
+.moves{
+	font-size: 1.5em;
+	width: 100%;
+}
+
+.time-taken{
+	font-size: 1.5em;
+	width: 100%;
+}
+
+/* The Modal (background) */
+.modal {
+	background-color: #6deef7;
+    display: none; /* Hidden by default */
+    height: 100%; /* Full height */
+    left: 0;
+    overflow: auto; /* Enable scroll if needed */	
+    padding-top: 100px; /* Location of the box */
+    position: fixed; /* Stay in place */
+    top: 0;
+    width: 100%; /* Full width */
+    z-index: 1; /* Sit on top */
+}
+
+/* Modal Content */
+.modal-content {
+    -webkit-animation-duration: 0.4s;
+    -webkit-animation-name: animatetop;
+    animation-duration: 0.4s;
+    animation-name: animatetop;
+    background-color: #fefefe;
+    border: 1px solid #888;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    margin: auto;
+    padding: 0;
+    position: relative;
+    width: 80%;
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+	background-color: #17c1ec;
+    color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+    padding: 2px 16px;
+	background-color: #17c1ec;
+    color: white;
+}

@@ -29,7 +29,10 @@ const starList = document.querySelector('.stars');
 
 	let duration;
 	let durationMinutes;
-	let startTime = new Date().getTime();
+
+			let startTime = new Date().getTime();
+	
+
 		
 //Declare modal before reload() call as part of the reload function hides the modal
 // Get the modal
@@ -108,10 +111,20 @@ let startingDeck = ["anchor", "bicycle", "bolt", "bomb", "car", "cube", "diamond
 	start();
 	 
  }
- 
+
+ 	//boolean flag used for starting timer once first card is clicked
+	let gameInProgress = false;
+	
  //keep track of how many attempts have been made to pair the cards
 function addOneToCount(){
 	count++;
+	
+	//start the clock when the first card is clicked
+	if ((count === 1) && (gameInProgress === true)){
+		startTime = Date.now();
+		clock();
+	}
+	
 	//update the count every time a pair have been clicked
 	let numberOfMoves =  document.querySelector('.moves');
 	//adjust display depending on number of moves ( 0 moves, 1 move, 2 moves, ...)
@@ -120,32 +133,16 @@ function addOneToCount(){
 		numberOfMoves.innerHTML = count + ' move';
 		break;
 		default:
-		numberOfMoves.innerHTML = count + ' moves';
-	
+		numberOfMoves.innerHTML = count + ' moves';	
 	}
-	console.log("addOneToCount function - count is " + count);
-	
-	// if (count = 0){
-		// {numberOfMoves.innerHTML = count + ' moves';}
-	
-		// if (count = 1){
-		// numberOfMoves.innerHTML = count + ' move';
-		// }
-			// else {
-			// numberOfMoves.innerHTML = count + ' moves';
-			// }
-	// }
-	// numberOfMoves.innerHTML = count + ' moves';
-	
-	console.log("addOneToCount function - count is " + count);
   
 	 //if player has taken too many moves, remove a star from the rating
 	 switch(count) {
-		case 3:
+		case 15:
 			numberOfStars = 2;
 			removeStar(numberOfStars);
 			break;
-		case 5:
+		case 25:
 			numberOfStars = 1;
 			removeStar(numberOfStars);
 			break;
@@ -155,7 +152,10 @@ function addOneToCount(){
 			// break;
 		default:
 	} 
-	return count;
+
+
+
+		return count;
 }
 
 function removeStar(numberOfStars){
@@ -278,6 +278,7 @@ function start(){
 
        deckList.insertAdjacentHTML('beforeend', '<li class="card " value = "' + i +'""><i class="fa fa-'+ startingDeck[i] + '""</i></li>');
     }
+
  }
 
 //run event handler if any cards are clicked
@@ -291,6 +292,9 @@ function playGame(evt){
 	    // The target of the event is represented by evt.target, and the target element the event listener is attached to is represented by evt.currentTarget. By simply checking that these values not be equal, you can ensure that the event handler doesn't react to events fired from the parent element that you don't care about.
 		//stop double-clicking causing problems
 		evt.preventDefault();
+		//allow timer to run
+		gameInProgress = true;
+
         //try to use various attributes of the clicked card
         let clickedItemID = evt.target.id ;
         let clickedItemClass = [];
@@ -337,7 +341,7 @@ function playGame(evt){
 				addOneToCount();
 				}
 
-			if(numberOfMatchedPairs === 2){ //two for testing purposes only, should be eight
+			if(numberOfMatchedPairs === 8){
 				//game over, stop the clock
 				stopTimer();
 				//declare variables for modal
@@ -358,23 +362,27 @@ function playGame(evt){
 } //end of function playGame
 
 let intervalID; //no need for "=0"
-clock();
+	
 const timeTaken = document.querySelector('.time-taken');
 function clock(){
+	if (gameInProgress){
 	intervalID = setInterval(timer,1000);
+	}
 }
 
-function timer(){
+function timer(){	
 	let finishTime = new Date().getTime();
 	duration = Math.floor(((finishTime-startTime) % (1000*60))/1000);
 	durationMinutes = Math.floor(((finishTime-startTime) % (1000*60*60))/(1000*60));
 	//show time taken so far
-	timeTaken.innerHTML = durationMinutes + 'm ' + duration + ' s';
+	timeTaken.innerHTML = durationMinutes + 'm ' + duration + 's';
 }
 
 function stopTimer(){
 	let timeMinutes = durationMinutes;
 	let timeSeconds = duration;
+	//change "clock running" flag
+	gameInProgress = false;
 	clearInterval(intervalID);	
 }
 
