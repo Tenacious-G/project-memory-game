@@ -138,7 +138,7 @@ function addOneToCount(){
   
 	 //if player has taken too many moves, remove a star from the rating
 	 switch(count) {
-		case 5: //change to 25 when out of testing
+		case 15: 
 			numberOfStars = 2;
 			removeStar(numberOfStars);
 			break;
@@ -290,7 +290,7 @@ function playGame(evt){
 				addOneToCount();
 				}
 
-			if(numberOfMatchedPairs === 2){//for testing only, should be 8
+			if(numberOfMatchedPairs === 8){
 				//game over, stop the clock
 				stopTimer();
 				//declare variables for modal
