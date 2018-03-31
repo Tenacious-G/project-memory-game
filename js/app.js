@@ -5,7 +5,7 @@
 //set delay so that player can't click on additional cards before the program has displayed the correct output for previous clicks
 //stop player from clicking on same card twice
 
- const deckList = document.querySelector('.deck'); // function start()
+const deckList = document.querySelector('.deck'); // function start()
 
 let parentDeck = document.querySelector('ul.deck');
 
@@ -26,7 +26,7 @@ const starList = document.querySelector('.stars');
 	 //clear contents of arrays used to compare cards
 	let exposed=[];
 	let matched=[];	
-
+	let numberOfStars = 3;
 	let duration;
 	let durationMinutes;
 
@@ -85,7 +85,8 @@ function restart(){
 	window.location.reload(); 	//could also use history.go(0);
 }
 
-let startingDeck = ["anchor", "bicycle", "bolt", "bomb", "car", "cube", "diamond", "leaf", "anchor", "bicycle", "bolt", "bomb", "car", "cube", "diamond", "leaf"];
+const halfDeck = ["anchor", "bicycle", "bolt", "bomb", "car", "cube", "diamond", "leaf"]
+let startingDeck = halfDeck.concat(halfDeck);
 
 //  * Create a list that holds all of your cards
 
@@ -100,7 +101,7 @@ let startingDeck = ["anchor", "bicycle", "bolt", "bomb", "car", "cube", "diamond
 	let numberOfMatchedPairs = 0;
 	let matchIndex1 = 0;
 	let matchIndex2 = 0;
-
+	let numberOfStars = 3;
 	let moves = 0;
 	 //clear contents of arrays used to compare cards
 	let exposed=[];
@@ -146,10 +147,6 @@ function addOneToCount(){
 			numberOfStars = 1;
 			removeStar(numberOfStars);
 			break;
-		// case 7:
-			// numberOfStars = 0;
-			// removeStar(numberOfStars);
-			// break;
 		default:
 	} 
 
@@ -169,9 +166,6 @@ function removeStar(numberOfStars){
 		case 1:
 			stars.innerHTML = '<li><i class="fa fa-star"></i></li>';
 		break;
-		// case 0:
-			// stars.innerHTML = '';
-		// break;
 		default:
 	}
 
@@ -341,7 +335,7 @@ function playGame(evt){
 				addOneToCount();
 				}
 
-			if(numberOfMatchedPairs === 8){
+			if(numberOfMatchedPairs === 2){//for testing only, should be 8
 				//game over, stop the clock
 				stopTimer();
 				//declare variables for modal
