@@ -1,9 +1,7 @@
-// $( document ).ready(function() {
-//   /*
-
 //**TODO
 //set delay so that player can't click on additional cards before the program has displayed the correct output for previous clicks
 //stop player from clicking on same card twice
+//keep track of many connected variables inside objects. In this case something like a game object might be useful: (see review)
 
 const deckList = document.querySelector('.deck'); // function start()
 
@@ -13,30 +11,28 @@ let numberOfMatchedPairs = 0; //used in function addToMatchedList
 
 const starList = document.querySelector('.stars');
 
- const stars = document.querySelector('.stars');	
+const stars = document.querySelector('.stars');	
 
-	 //reset counters
-	let count= 0; //initialise counter addOneToCount()
-	let cardCount = 0; //this gets reset after every two attempts to match cards
+//reset counters
+let count= 0; //initialise counter addOneToCount()
+let cardCount = 0; //this gets reset after every two attempts to match cards
 
-	let matchIndex1 = 0;
-	let matchIndex2 = 0;
+let matchIndex1 = 0;
+let matchIndex2 = 0;
 
-	let moves = 0;
-	 //clear contents of arrays used to compare cards
-	let exposed=[];
-	let matched=[];	
-	let numberOfStars = 3;
-	let duration;
-	let durationMinutes;
+let moves = 0;
+ //clear contents of arrays used to compare cards
+let exposed=[];
+let matched=[];	
+let numberOfStars = 3;
+let duration;
+let durationMinutes;
 
-			let startTime = new Date().getTime();
-	
-
+let startTime = new Date().getTime();
 		
 //Declare modal before reload() call as part of the reload function hides the modal
 // Get the modal
-let modal = document.getElementById('modal-standard');
+const modal = document.getElementById('modal-standard');
 
 // Get the button that opens the modal
 let btn = document.getElementById("myBtn");
@@ -84,10 +80,9 @@ function restart(){
 	window.location.reload(); 	//could also use history.go(0);
 }
 
+//Create a list that holds the cards
 const halfDeck = ["anchor", "bicycle", "bolt", "bomb", "car", "cube", "diamond", "leaf"]
 let startingDeck = halfDeck.concat(halfDeck);
-
-//  * Create a list that holds all of your cards
 
  function reload(){
 	//close the modal
@@ -113,17 +108,16 @@ let startingDeck = halfDeck.concat(halfDeck);
 	stars.innerHTML = '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>';
 	
 	//deal out a fresh round of cards
-	start();
-	 
+	start();	 
  }
 
- 	//boolean flag used for starting timer once first card is clicked
-	let gameInProgress = false;
+//boolean flag used for starting timer once first card is clicked
+let gameInProgress = false;
 
-	//update the count every time a pair have been clicked
-	let numberOfMoves =  document.querySelector('.moves');
+//update the count every time a pair have been clicked
+let numberOfMoves =  document.querySelector('.moves');
 	
- //keep track of how many attempts have been made to pair the cards
+//keep track of how many attempts have been made to pair the cards
 function addOneToCount(){
 	count++;
 	
@@ -132,7 +126,6 @@ function addOneToCount(){
 		startTime = Date.now();
 		clock();
 	}
-	
 
 	//adjust display depending on number of moves ( 0 moves, 1 move, 2 moves, ...)
 	switch(numberOfMoves){
@@ -154,10 +147,7 @@ function addOneToCount(){
 			removeStar(numberOfStars);
 			break;
 		default:
-	} 
-
-
-
+	}
 		return count;
 }
 
@@ -174,17 +164,15 @@ function removeStar(numberOfStars){
 		break;
 		default:
 	}
-
 }
 
 //create a list of cards that have been turned face up
 //this list should have between zero and two elements
-
-//create a function to add the clicked card to the "exposed" list       //add the appropriate card to the exposed list
 function addToExposedList(index){
 	exposed.push(startingDeck[index]);
 }
 
+//create a list of cards that have been paired up
 function addToMatchedList(card){
     matched.push(card);
 	//keep tabs of how many pairs have been matched.
@@ -192,47 +180,17 @@ function addToMatchedList(card){
 	return numberOfMatchedPairs;
 }
 
+//show the open card's icon for the first card in any pair
 function lockFirstCard(firstCard){
   firstCard.classList.add('match');
 }
 
-//show the open card's icon for the first card in any pair
-function lockCard(card){
-	
+function lockCard(card){	
 	let currentCards = deckList.getElementsByClassName('current');
 	//remove 'current' class from both cards
 	currentCards.item(0).classList.remove('current');
 	currentCards.item(0).classList.remove('current');
 }
-
-// the cards do match, lock the cards in the open position
-function lockCards(clickedItemTitle){
-	// check for cards with the correct title
-	// change the class for both cards to "match"
-
-	// use getElementsByClassName to find both matching items
-	let matchedCards = deckList.getElementsByClassName('show');
-
-
-	//careful, will this only work with the first pair?
-	//does matchedCards change the order its items are stored in each time?
-	matchIndex1 = (matchedCards.length) - 1;
-	matchIndex2 = (matchedCards.length) - 2;
-	console.log("match index 1 and 2 - " + matchIndex1 + "  " + matchIndex2);
-	matchedCards.item(matchIndex1).classList.add('match');
-	// matchedCards.item(matchIndex1).classList.add('open');
-	matchedCards.item(matchIndex2).classList.add('match');
-	// matchedCards.item(matchIndex2).classList.add('open');
-	//      console.log("tried to add 'match', result - " + matchedCards);
-
-}
-
-//create a list of cards that have been paired up
-//once all eight pairs have been matched up, we will launch the "congratulations" modal
-//if there is a match, then we need to change the class of the matched cards to "match", and also remove them from the "exposed" list.
-
-
-//create a function to test whether the clicked card matches an exposed card
 
 function shuffle(array) {
     let currentIndex = array.length, temporaryValue, randomIndex;
@@ -251,12 +209,8 @@ function shuffle(array) {
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
     }
-
     return array;
-
 }
-
-
 
 /**
 //@description shuffle the pack and display all cards face down
@@ -278,12 +232,10 @@ function start(){
 
        deckList.insertAdjacentHTML('beforeend', '<li class="card " value = "' + i +'""><i class="fa fa-'+ startingDeck[i] + '""</i></li>');
     }
-
  }
 
 //run event handler if any cards are clicked
 parentDeck.addEventListener('click', playGame, false);
-
 
  //display the card's symbol
 function playGame(evt){
@@ -295,7 +247,7 @@ function playGame(evt){
 		//allow timer to run
 		gameInProgress = true;
 
-        //try to use various attributes of the clicked card
+        //use various attributes of the clicked card
         let clickedItemID = evt.target.id ;
         let clickedItemClass = [];
         clickedItemClassList = evt.target.classList;
@@ -312,8 +264,6 @@ function playGame(evt){
 
 		//add a "current" and "match" class to both cards, will remove these classes if it's not an identical pair
 		card.classList.add('current', 'match');
-
-
         //add the card to a *list* of "open" cards
         addToExposedList(index);
 
@@ -321,13 +271,12 @@ function playGame(evt){
 			if ((exposed.length % 2 === 0) && (exposed[0] === exposed[1])){
 				//reset cardCount, only check two cards at a time
 				cardCount = 0;
-				//if both cards are the same
 
-				//add it to the matched list
+				//add current card to the matched list
 				addToMatchedList(evt.target); //evt.target was "card"
 				lockCard(card);
 
-				// clear the exposed list
+				//clear the exposed list
 				exposed.splice(0,exposed.length); 
 				addOneToCount();
 			}
@@ -349,7 +298,7 @@ function playGame(evt){
 				modalHead.innerHTML = 'Game completed - well done!';
 				const modalFoot = document.querySelector('.statistics');
 				modalFoot.innerHTML = 'You completed the game in ' + durationMinutes + ' minutes and ' + duration + ' seconds.<br></br>You finished the game with ' + numberOfStars + ' stars.';
-				//When the user finishes the game, open the modal
+				//When the user completes the game, open the modal
 				openModal();
 				//reset the game after showing the user his/her stats
 				numberOfMatchedPairs = 0;
