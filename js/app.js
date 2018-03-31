@@ -36,23 +36,26 @@ const starList = document.querySelector('.stars');
 		
 //Declare modal before reload() call as part of the reload function hides the modal
 // Get the modal
-var modal = document.getElementById('modal-standard');
+let modal = document.getElementById('modal-standard');
 
 // Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+let btn = document.getElementById("myBtn");
 const playButton = document.getElementsByClassName('.play-again');
 
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+let span = document.getElementsByClassName("close")[0];
 
 //When the user finishes the game, open the modal
 function openModal(){
 	    modal.style.display = "block";
 }
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
+//reload game if X is clicked in modal
+const closeX = document.querySelector('.close');
+closeX.addEventListener('click', reload, false);
+
+function closeModal(){
+	modal.style.display = "none";
 }
 
 const modalBody = document.querySelector('.modal-body');
@@ -60,20 +63,16 @@ const modalBody = document.querySelector('.modal-body');
 const playAgainSam = document.querySelector('.play-again');
 playAgainSam.addEventListener('click',restart,false);
 const quitGame = document.querySelector('.quit-game');
+quitGame.addEventListener('click',restart,false);
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
+//reload game if user clicks outside modal when it is displayed
+document.addEventListener('click',outsideModal,false);
+function outsideModal(event){
+	    if (event.target == modal) {
         modal.style.display = "none";
-    }
+		reload();
+	}
 }
-
-// When the user clicks on the quit game button, close the modal
-quitGame.onclick = function() {
-    modal.style.display = "none";
-	
-}
-
 //modal adapted from https://www.w3schools.com/howto/howto_css_modals.asp 
 //also studied https://social.msdn.microsoft.com/Forums/office/en-US/8a739fd2-2a9d-4720-a59d-854ca4452d0c/javascript-confirm-popup-yes-no-button-instead-of-ok-and-cancel?forum=sharepointdevelopmentprevious
 
@@ -106,8 +105,13 @@ let startingDeck = halfDeck.concat(halfDeck);
 	 //clear contents of arrays used to compare cards
 	let exposed=[];
 	let matched=[];	
-	matched.splice(0,matched.length); 
-
+	matched.splice(0,matched.length);
+	
+	//show starting values on screen
+	numberOfMoves.innerHTML = '0 moves';
+	timeTaken.innerHTML = '0m 0s';
+	stars.innerHTML = '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>';
+	
 	//deal out a fresh round of cards
 	start();
 	 
@@ -115,6 +119,9 @@ let startingDeck = halfDeck.concat(halfDeck);
 
  	//boolean flag used for starting timer once first card is clicked
 	let gameInProgress = false;
+
+	//update the count every time a pair have been clicked
+	let numberOfMoves =  document.querySelector('.moves');
 	
  //keep track of how many attempts have been made to pair the cards
 function addOneToCount(){
@@ -126,8 +133,7 @@ function addOneToCount(){
 		clock();
 	}
 	
-	//update the count every time a pair have been clicked
-	let numberOfMoves =  document.querySelector('.moves');
+
 	//adjust display depending on number of moves ( 0 moves, 1 move, 2 moves, ...)
 	switch(numberOfMoves){
 		case 1:
@@ -139,7 +145,7 @@ function addOneToCount(){
   
 	 //if player has taken too many moves, remove a star from the rating
 	 switch(count) {
-		case 15:
+		case 5: //change to 25 when out of testing
 			numberOfStars = 2;
 			removeStar(numberOfStars);
 			break;
@@ -229,7 +235,7 @@ function lockCards(clickedItemTitle){
 //create a function to test whether the clicked card matches an exposed card
 
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+    let currentIndex = array.length, temporaryValue, randomIndex;
 
      // While there remain elements to shuffle...
      while (currentIndex !== 0) {
